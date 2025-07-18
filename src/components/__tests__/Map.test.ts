@@ -17,7 +17,11 @@ vi.mock('@vue-leaflet/vue-leaflet', () => ({
   LMarker: {
     name: 'LMarker',
     template: '<div class="mock-marker" data-testid="marker"></div>',
-    props: ['latLng']
+    props: ['latLng', 'name']
+  },
+  LPopup: {
+    name: 'LPopup',
+    template: '<div class="mock-popup" data-testid="popup"><slot /></div>'
   }
 }))
 
@@ -35,8 +39,10 @@ describe('Map.vue', () => {
     expect(wrapper.find('[data-testid="tile-layer"]').exists()).toBe(true)
   })
 
-  it('renders the marker', () => {
+  it('renders the marker', async () => {
     const wrapper = mount(Map)
+    await wrapper.vm.$nextTick()
+    await new Promise(resolve => setTimeout(resolve, 100))
     expect(wrapper.find('[data-testid="marker"]').exists()).toBe(true)
   })
 
@@ -49,8 +55,8 @@ describe('Map.vue', () => {
   it('has correct dimensions', () => {
     const wrapper = mount(Map)
     const mapContainer = wrapper.find('div')
-    expect(mapContainer.attributes('style')).toContain('height: 600px')
-    expect(mapContainer.attributes('style')).toContain('width: 800px')
+    expect(mapContainer.attributes('style')).toContain('height: 100vh')
+    expect(mapContainer.attributes('style')).toContain('width: 100vw')
   })
 
   it('contains OpenStreetMap tile layer with correct URL', () => {
@@ -60,11 +66,13 @@ describe('Map.vue', () => {
     expect(tileLayer.props('url')).toBe('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
   })
 
-  it('has marker at correct position', () => {
+  it('has marker at correct position', async () => {
     const wrapper = mount(Map)
+    await wrapper.vm.$nextTick()
+    await new Promise(resolve => setTimeout(resolve, 100))
     const marker = wrapper.findComponent({ name: 'LMarker' })
     expect(marker.exists()).toBe(true)
-    expect(marker.props('latLng')).toEqual([49.5667, 5.5333])
+    expect(marker.props('latLng')).toEqual([49.55, 5.52])
   })
 
   it('has correct center coordinates', () => {

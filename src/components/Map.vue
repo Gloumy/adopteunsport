@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100vh; width: 100vw">
+  <div style="height: 100%; width: 100%">
     <l-map
       ref="map"
       v-model:zoom="zoom"
@@ -31,7 +31,7 @@ import type { Club } from "../models/Club";
 const { getClubs } = useClubApi();
 
 // Variables réactives
-const zoom = ref(20);
+const zoom = ref(15);
 const clubs = ref<Club[]>([]);
 
 onMounted(async() => {

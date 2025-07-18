@@ -1,0 +1,56 @@
+<svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dégradé pour la pin -->
+  <defs>
+    <linearGradient id="pinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4285f4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a73e8;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Ombre portée -->
+    <filter id="dropshadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Corps principal de la pin -->
+  <path d="M50 10 C30 10, 15 25, 15 45 C15 65, 50 95, 50 95 C50 95, 85 65, 85 45 C85 25, 70 10, 50 10 Z" 
+        fill="url(#pinGradient)" 
+        stroke="#0f5cb8" 
+        stroke-width="2" 
+        filter="url(#dropshadow)"/>
+  
+  <!-- Cercle intérieur blanc pour le sport -->
+  <circle cx="50" cy="45" r="22" fill="#ffffff" stroke="#e8f0fe" stroke-width="1"/>
+  
+  <!-- Icône de course à pied -->
+  <g fill="#333333" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Tête du coureur -->
+    <circle cx="48" cy="35" r="3" fill="#333333"/>
+    
+    <!-- Torse -->
+    <path d="M48 38 L48 48" fill="none"/>
+    
+    <!-- Bras gauche -->
+    <path d="M48 40 L44 38 L42 40" fill="none"/>
+    
+    <!-- Bras droit -->
+    <path d="M48 42 L52 44 L54 42" fill="none"/>
+    
+    <!-- Jambe gauche -->
+    <path d="M48 48 L46 54 L44 58" fill="none"/>
+    
+    <!-- Jambe droite -->
+    <path d="M48 48 L52 52 L56 50" fill="none"/>
+    
+    <!-- Lignes de mouvement -->
+    <g stroke="#666666" stroke-width="1" fill="none" opacity="0.6">
+      <path d="M35 40 L38 40"/>
+      <path d="M36 44 L39 44"/>
+      <path d="M58 38 L61 38"/>
+      <path d="M59 42 L62 42"/>
+    </g>
+  </g>
+  
+  <!-- Point central de la pin -->
+  <circle cx="50" cy="45" r="2" fill="#1a73e8"/>
+</svg>

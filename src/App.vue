@@ -10,6 +10,7 @@ const { getClubs } = useClubApi();
 const clubs = ref<Club[]>([]);
 const selectedSports = ref<string[]>([]);
 const showFilterDialog = ref(false);
+const showInfoDialog = ref(false);
 
 // Charger les clubs
 onMounted(async () => {
@@ -42,6 +43,11 @@ function toggleFilterDialog() {
   showFilterDialog.value = !showFilterDialog.value;
 }
 
+// Ouvrir/fermer la dialog d'informations
+function toggleInfoDialog() {
+  showInfoDialog.value = !showInfoDialog.value;
+}
+
 // Effacer tous les filtres
 function clearFilters() {
   selectedSports.value = [];
@@ -71,6 +77,7 @@ function clearFilters() {
         <v-btn
           icon="mdi-information-outline"
           variant="text"
+          @click="toggleInfoDialog"
         ></v-btn>
         <v-btn
           icon="mdi-filter-variant"
@@ -162,6 +169,94 @@ function clearFilters() {
             variant="elevated"
           >
             Appliquer
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <!-- Dialog d'informations -->
+    <v-dialog v-model="showInfoDialog" max-width="600" :fullscreen="$vuetify.display.xs">
+      <v-card>
+        <v-card-title class="d-flex align-center">
+          <v-icon class="mr-3" color="primary">mdi-information</v-icon>
+          <span>À propos</span>
+          <v-spacer></v-spacer>
+          <v-btn
+            icon="mdi-close"
+            variant="text"
+            @click="showInfoDialog = false"
+          ></v-btn>
+        </v-card-title>
+
+        <v-divider></v-divider>
+
+        <v-card-text class="pa-6">
+          <div class="info-content">
+            <!-- Section principale -->
+            <div class="mb-6">
+              <h3 class="text-h6 mb-3 text-primary">
+                <v-icon class="mr-2">mdi-lightbulb-on-outline</v-icon>
+                Idée
+              </h3>
+              <p class="text-body-1 mb-4">
+                Le sport, tout le monde dit que c'est bien et bon pour la santé, mais trouver un sport qui nous plaît n'est pas si facile. <br>
+                Ce site peut t'aider à visualiser les sports disponibles près de chez toi pour trouver celui qui te convient !
+              </p>
+            </div>
+
+            <!-- <v-divider class="my-4"></v-divider> -->
+
+            <!-- Section fonctionnalités -->
+            <!-- <div class="mb-6">
+              <h3 class="text-h6 mb-3 text-primary">
+                <v-icon class="mr-2">mdi-feature-search</v-icon>
+                Fonctionnalités
+              </h3>
+              <v-list density="compact" class="pa-0">
+                <v-list-item prepend-icon="mdi-map-marker-multiple" class="px-0">
+                  <v-list-item-title>Carte interactive des clubs sportifs</v-list-item-title>
+                </v-list-item>
+                <v-list-item prepend-icon="mdi-filter-variant" class="px-0">
+                  <v-list-item-title>Filtrage par type de sport</v-list-item-title>
+                </v-list-item>
+                <v-list-item prepend-icon="mdi-information" class="px-0">
+                  <v-list-item-title>Informations détaillées des clubs</v-list-item-title>
+                </v-list-item>
+                <v-list-item prepend-icon="mdi-phone" class="px-0">
+                  <v-list-item-title>Contact direct (téléphone, email, site web)</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </div> -->
+
+            <v-divider class="my-4"></v-divider>
+
+            <!-- Section contact -->
+            <div>
+              <h3 class="text-h6 mb-3 text-primary">
+                <v-icon class="mr-2">mdi-email</v-icon>
+                Contact
+              </h3>
+              <p class="text-body-2 mb-0">
+                <!-- Informations de contact à remplir -->
+                Si vous connaissez un club qui n'est pas répertorié (ou mal), merci de me contacter à
+                <a href="mailto:simon@cornet.dev" class="text-primary">
+                  simon@cornet.dev
+                </a> avec toutes les informations possibles.
+                <br>
+                <br>Pour l'instant, les données ont été récupérées via IA avec certaines coordonnées GPS revérifiées à la main, mais ça prend du temps, donc il reste des erreurs.
+              </p>
+            </div>
+          </div>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            @click="showInfoDialog = false"
+            color="primary"
+            variant="elevated"
+          >
+            Fermer
           </v-btn>
         </v-card-actions>
       </v-card>

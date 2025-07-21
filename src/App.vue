@@ -63,7 +63,7 @@ function clearFilters() {
         />
       </template>
       
-      <v-app-bar-title class="text-h4 font-weight-bold">
+      <v-app-bar-title class="text-h4 font-weight-bold d-none d-sm-block">
         Adopte un Sport
       </v-app-bar-title>
 

@@ -13,7 +13,7 @@
         attribution="&copy; OpenStreetMap contributors"
       />
       <l-marker
-        v-for="club in clubs"
+        v-for="club in props.clubs"
         :key="club.nom"
         :lat-lng="[club.latitude, club.longitude]"
         :name="club.nom"
@@ -159,25 +159,24 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
-// import type L from "leaflet";
-import useClubApi from "../api/ClubApi";
 import { Club } from "../models/Club";
 
-const { getClubs } = useClubApi();
+// Props
+interface Props {
+  clubs: Club[];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  clubs: () => []
+});
 
 // Variables réactives
 const zoom = ref(15);
 const displayDetailsDialog = ref(false);
-
-const clubs = ref<Club[]>([]);
 const selectedClub = ref<Club>();
-
-onMounted(async () => {
-  clubs.value = await getClubs();
-});
 
 function openDetailsDialog(club: Club) {
   selectedClub.value = new Club(club);

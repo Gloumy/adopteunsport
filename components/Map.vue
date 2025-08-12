@@ -162,7 +162,7 @@
 import { ref } from "vue";
 import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer, LMarker, LPopup } from "@vue-leaflet/vue-leaflet";
-import { Club } from "../models/Club";
+import { Club } from "~/models/Club";
 
 // Props
 interface Props {

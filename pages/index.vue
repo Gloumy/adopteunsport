@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
-import Map from "./components/Map.vue";
-import AppBar from "./components/AppBar.vue";
-import FilterDialog from "./components/FilterDialog.vue";
-import InfoDialog from "./components/InfoDialog.vue";
-import useClubApi from "./api/ClubApi";
-import { Club } from "./models/Club";
+import useClubApi from "~/api/ClubApi";
+import { Club } from "~/models/Club";
 
 const { getClubs } = useClubApi();
 

@@ -13,7 +13,7 @@ ENV=${1:-$DEFAULT_ENV}
 
 SERVER_HOST="46.101.209.51"
 SERVER_USER="root"
-SERVER_PATH="/var/www/adopteunsport"
+SERVER_PATH="/home/deploy/adopteunsport"
 BUILD_COMMAND="npm run build"
 DIST_FOLDER="dist"
 

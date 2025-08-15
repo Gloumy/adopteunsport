@@ -471,7 +471,17 @@ const clubsSportVirtonArlon: ClubDTO[] = [
     sport: "Cyclotourisme, VTT, Gravel",
     phoneNumber: "",
     email: ""
-  }
+  },
+  {
+    nom: "Tennis de Table Hachy",
+    latitude: 49.70351554271898, 
+    longitude: 5.6807635471149736,
+    adress: "Rue Saint-Amand, 43, 6720 Hachy, Belgique",
+    website: "https://www.facebook.com/groups/1125892820771403",
+    sport: "Tennis de table",
+    phoneNumber: "+32.477/29.85.22",
+    email: "ben.goebels@gmail.com"
+  },
 ];
 
 export default clubsSportVirtonArlon;
